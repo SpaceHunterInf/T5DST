@@ -11,13 +11,13 @@
 #SBATCH -e ./log/slurm-err-%j.txt
 #SBATCH -o ./log/slurm-out-%j.txt
 #SBATCH --open-mode=append
-#SBATCH --array=0-2
+#SBATCH --array=0
 # Start your application
 eval "$(conda shell.bash hook)"
 
 N="$SLURM_ARRAY_TASK_ID"
 conda activate adapter
-TASKS=(english arabic french)
+TASKS=(english)
 lang=${TASKS[N]}
 saving_dir=output/$lang/flan-t5/small-357/5epochs/
 python T5.py \
