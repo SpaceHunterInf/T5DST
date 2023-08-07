@@ -20,10 +20,10 @@ conda activate adapter
 TASKS=(english)
 lang=${TASKS[N]}
 saving_dir=output/$lang/flan-t5/small-357/5epochs/
-python T5.py \
+python T5_adapter.py \
   --model_checkpoint 'google/flan-t5-small' \
   --model_name 'flan-t5' \
-  --train_batch_size 4 \
+  --train_batch_size 8 \
   --GPU 2 \
   --seed 557\
   --slot_lang slottype \
