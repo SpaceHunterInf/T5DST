@@ -234,9 +234,9 @@ def prepare_data(args, tokenizer):
     split_val = int(args['few_shots_percent'] * len(data_dev) / 100)
     data_dev = data_dev[:split_val]
     print('after splitting, the length of the dev set', len(data_dev))
-    train_dataset = DSTDataset(data_train, args)
-    dev_dataset = DSTDataset(data_dev, args)
-    test_dataset = DSTDataset(data_test, args)
+    train_dataset = DSTDataset(data_train[:100], args)
+    dev_dataset = DSTDataset(data_dev[:100], args)
+    test_dataset = DSTDataset(data_test[:100], args)
 
     if "gpt" in args["model_name"]:
         train_loader = DataLoader(train_dataset, batch_size=args["train_batch_size"], shuffle=True, collate_fn=partial(gpt_collate_fn, tokenizer=tokenizer), num_workers=16)
